@@ -1,43 +1,44 @@
-# Internet Utility Platform (Toolbox)
+# ToolBox — Production Internet Utility Platform
 
-A scalable online utility platform with PDF, image, text, developer, and calculator tools.
+A high-performance, privacy-conscious utility platform containing 34 production-ready online tools across PDF manipulation, Image processing, Text utilities, Developer tools, and Financial calculators.
 
-## Quick Start
+## 🚀 Quick Start
 
+### 1. Install Dependencies
 ```bash
 npm install
-npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+### 2. Run Test Suites
+```bash
+# Run all unit and file processor tests
+npm test
+```
 
-## Project Structure
+### 3. Start Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to access the application.
 
-- `apps/web` — Next.js frontend and API routes
-- `packages/tools` — Tool engine and registry
-- `packages/calculators` — Calculator logic with tests
-- `docs/` — Architecture and development guides
+---
 
-## Scripts
+## 🛠 Features & Capabilities
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm test` | Run calculator unit tests |
+- **19 Client-Side Utilities**: 100% private in-browser execution (EMI, SIP, CAGR, GST, Age, Date, Unit Converter, Word Counter, JSON Formatter, JWT Decoder, UUID Generator, etc.).
+- **15 Real File Processors**: Genuine binary processing with `Sharp`, `pdf-lib`, and LibreOffice engines for PDF merging/splitting, compression, image conversions, and document generation.
+- **Zero-Cost V1 Infrastructure**: Built-in support for Cloudflare R2 object storage with $0 egress fees and zero-config local storage fallback.
+- **Programmatic SEO & Content**: Automatic Schema.org JSON-LD structured data, dynamic OpenGraph previews, and XML sitemaps across all 52 static routes.
 
-## MVP Tools (34)
+---
 
-**Text:** Word Counter, Character Counter, Case Converter, Remove Duplicate Lines, Text Diff
+## 📚 Documentation
 
-**Developer:** JSON Formatter, JSON Validator, JWT Decoder, UUID Generator, Base64, URL Encoder
+- [Architecture & File Processing Pipeline](docs/backend-architecture.md)
+- [Local Development Guide](docs/local-development.md)
+- [Deployment & Cloudflare R2 Setup](docs/deployment.md)
+- [Tool Registry & Catalog](docs/tools.md)
+- [Database Schema](docs/database.md)
+- [Contributing New Tools](docs/contributing.md)
+- [Product Roadmap](docs/roadmap.md)
 
-**Calculators:** Percentage, EMI, SIP, CAGR, GST, Age, Date, Unit Converter
-
-**PDF:** PDF to Word, Word to PDF, Merge, Split, Compress, PDF to JPG, JPG to PDF, Rotate
-
-**Image:** Compress, Resize, Crop, JPG to PNG, PNG to JPG, WebP Converter, Background Remover
-
-## Documentation
-
-See [docs/architecture.md](./docs/architecture.md) and [docs/tools.md](./docs/tools.md).

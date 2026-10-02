@@ -61,7 +61,12 @@ export default async function ToolPage({ params }: PageProps) {
       <p className="mt-2 text-lg text-muted">{tool.shortDescription}</p>
 
       <div className="mt-8 rounded-xl border border-border bg-card p-6 shadow-sm">
-        <ToolRunner tool={tool} />
+        <ToolRunner
+          slug={tool.slug}
+          category={tool.category}
+          processing={tool.processing}
+          name={tool.name}
+        />
       </div>
 
       <div className="mt-6">

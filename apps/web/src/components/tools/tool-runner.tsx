@@ -20,28 +20,37 @@ function getFileConfig(slug: string) {
   return { accept: IMAGE_ACCEPT, label: slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ") };
 }
 
-export function ToolRunner({ tool }: { tool: ToolDefinition }) {
-  if (tool.processing === "server") {
-    const config = getFileConfig(tool.slug);
+export function ToolRunner({
+  slug,
+  category,
+  processing,
+}: {
+  slug: string;
+  category: string;
+  processing: "client" | "server";
+  name?: string;
+}) {
+  if (processing === "server") {
+    const config = getFileConfig(slug);
     return (
       <FileToolUploader
-        toolSlug={tool.slug}
+        toolSlug={slug}
         accept={config.accept}
         actionLabel={config.label}
       />
     );
   }
 
-  if (tool.category === "text") {
-    return <TextToolsPanel slug={tool.slug} />;
+  if (category === "text") {
+    return <TextToolsPanel slug={slug} />;
   }
 
-  if (tool.category === "developer") {
-    return <DeveloperToolsPanel slug={tool.slug} />;
+  if (category === "developer") {
+    return <DeveloperToolsPanel slug={slug} />;
   }
 
-  if (tool.category === "calculator") {
-    return <CalculatorToolsPanel slug={tool.slug} />;
+  if (category === "calculator") {
+    return <CalculatorToolsPanel slug={slug} />;
   }
 
   return <p className="text-muted">Tool interface coming soon.</p>;

@@ -9,13 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1146.0",
+    "@aws-sdk/s3-request-presigner": "^3.1146.0",
     "@internet-utility/calculators": "*",
     "@internet-utility/tools": "*",
     "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
     "next": "16.3.6",
+    "pdf-lib": "^1.17.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "sharp": "^0.35.5",
     "tailwind-merge": "^3.3.0",
     "zod": "^3.24.2"
   },

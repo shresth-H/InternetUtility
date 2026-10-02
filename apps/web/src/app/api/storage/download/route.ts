@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getStorageAdapter } from "@/lib/storage/local-adapter";
+import { getStorageAdapter } from "@/lib/storage";
+import { recordClassBOperation } from "@/lib/storage/quota-guard";
 
 export async function GET(request: NextRequest) {
   const key = request.nextUrl.searchParams.get("key");
@@ -8,16 +9,31 @@ export async function GET(request: NextRequest) {
   }
 
   const storage = getStorageAdapter();
-  const file = storage.get(key);
+  const buffer = await storage.getBuffer(key);
 
-  if (!file) {
-    return NextResponse.json({ error: "NOT_FOUND" }, { status: 404 });
+  if (!buffer) {
+    return NextResponse.json({ error: "NOT_FOUND", message: "File not found or expired." }, { status: 404 });
   }
 
-  return new NextResponse(new Uint8Array(file.data), {
+  // Record Class B read operation
+  recordClassBOperation(1);
+
+  const fileName = key.split("/").pop() || "download";
+  const ext = fileName.split(".").pop()?.toLowerCase();
+
+  let mimeType = "application/octet-stream";
+  if (ext === "pdf") mimeType = "application/pdf";
+  else if (ext === "png") mimeType = "image/png";
+  else if (ext === "jpg" || ext === "jpeg") mimeType = "image/jpeg";
+  else if (ext === "webp") mimeType = "image/webp";
+  else if (ext === "docx") mimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+  else if (ext === "csv") mimeType = "text/csv";
+
+  return new NextResponse(new Uint8Array(buffer), {
     headers: {
-      "Content-Type": file.mimeType || "application/octet-stream",
-      "Content-Disposition": `attachment; filename="${key.split("/").pop()}"`,
+      "Content-Type": mimeType,
+      "Content-Disposition": `attachment; filename="${encodeURIComponent(fileName)}"`,
     },
   });
 }
+

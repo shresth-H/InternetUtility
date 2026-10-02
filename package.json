@@ -11,6 +11,8 @@
     "build": "npm run build --workspace=web",
     "start": "npm run start --workspace=web",
     "lint": "npm run lint --workspace=web",
-    "test": "npm run test --workspace=@internet-utility/calculators"
+    "test:calculators": "npm run test --workspace=@internet-utility/calculators",
+    "test:processors": "npx tsx apps/web/src/lib/worker/__tests__/processors.test.ts",
+    "test": "npm run test:calculators && npm run test:processors"
   }
 }
